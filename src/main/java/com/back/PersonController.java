@@ -13,7 +13,7 @@ public class PersonController {
 
     @GetMapping("/people")
     @ResponseBody
-public String people() {
+    public String people() {
         long count = personService.count();
         return "people // 사람 수 : %d".formatted(count);
     }
