@@ -6,10 +6,10 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
-@Order(1)
-public class MyApplicationRunner implements ApplicationRunner {
+@Order(2)
+public class MyApplicationRunner2 implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println("ApplicationArguments 실행 중");
+        System.out.println("ApplicationArguments2 실행 중");
     }
 }
