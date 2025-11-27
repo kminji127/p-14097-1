@@ -53,17 +53,17 @@ public class AppConfig {
         return args -> System.out.println("myApplicationRunner2 실행 중");
     }
 
-    @Bean
-    @Order(3)
-    public ApplicationRunner baseInitDataApplicationRunner() {
-        // 익명 함수(람다)
-        return args -> {
-            self.work1(); // self(프록시)를 통한 간접 호출 : 트랜잭션 작동 O
-//            this.work2(); // this를 통한 직접 호출 : 트랜잭션 작동 X - 같은 객체 내의 메서드를 내부호출 할 때는 @Transactional 이 작동하지 않는다.
-            self.work2();
-        };
-    }
+//    @Bean
+//    @Order(3)
+//    public ApplicationRunner baseInitDataApplicationRunner() {
+//        // 익명 함수(람다)
+//        return args -> {
+//            self.work1(); // self(프록시)를 통한 간접 호출 : 트랜잭션 작동 O
 
+    /// /            this.work2(); // this를 통한 직접 호출 : 트랜잭션 작동 X - 같은 객체 내의 메서드를 내부호출 할 때는 @Transactional 이 작동하지 않는다.
+//            self.work2();
+//        };
+//    }
     @Transactional
     public void work1() {
         System.out.println("work1");
