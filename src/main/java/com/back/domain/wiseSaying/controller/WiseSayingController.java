@@ -4,6 +4,7 @@ import com.back.domain.wiseSaying.entity.WiseSaying;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -18,7 +19,8 @@ public class WiseSayingController {
 
     @GetMapping("/wiseSayings/write")
     @ResponseBody
-    public String write(String content, String author) { // Spring MVC에서 기본적으로 같은 변수명이면 Query Parameter를 자동으로 메서드 파라미터에 매핑
+    public String write(@RequestParam(defaultValue = "내용") String content,
+                        @RequestParam(defaultValue = "작가") String author) { // Spring MVC에서 기본적으로 같은 변수명이면 Query Parameter를 자동으로 메서드 파라미터에 매핑
         if (content == null || content.isBlank()) {
             throw new IllegalArgumentException("내용은 null이나 빈 칸일 수 없습니다.");
         }
@@ -61,11 +63,13 @@ public class WiseSayingController {
 
     @GetMapping("/wiseSayings/modify/{id}")
     @ResponseBody
-    public String modify(@PathVariable int id, String content, String author) {
+    public String modify(@PathVariable int id,
+                         @RequestParam(defaultValue = "내용") String content,
+                         @RequestParam(defaultValue = "작가") String author) {
         if (content.isBlank()) {
             throw new IllegalArgumentException("내용은 null이나 빈 칸일 수 없습니다.");
         }
-        
+
         if (author.isBlank()) {
             throw new IllegalArgumentException("작가는 null이나 빈 칸일 수 없습니다.");
         }
