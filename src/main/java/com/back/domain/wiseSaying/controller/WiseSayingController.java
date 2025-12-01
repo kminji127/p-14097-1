@@ -58,4 +58,21 @@ public class WiseSayingController {
                 .filter(ws -> ws.getId() == id)
                 .findFirst();
     }
+
+    @GetMapping("/wiseSayings/modify/{id}")
+    @ResponseBody
+    public String modify(@PathVariable int id, String content, String author) {
+        if (content.isBlank()) {
+            throw new IllegalArgumentException("내용은 null이나 빈 칸일 수 없습니다.");
+        }
+        
+        if (author.isBlank()) {
+            throw new IllegalArgumentException("작가는 null이나 빈 칸일 수 없습니다.");
+        }
+
+        WiseSaying wiseSaying = findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("%d번 명언은 존재하지 않습니다.".formatted(id)));
+        wiseSaying.modify(content, author);
+        return "%d번 명언이 수정되었습니다.".formatted(id);
+    }
 }
