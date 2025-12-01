@@ -58,7 +58,7 @@ public class WiseSayingController {
                 """.formatted(wiseSaying.getContent(), wiseSaying.getId(), wiseSaying.getAuthor());
     }
 
-    @GetMapping("/wiseSayings/delete/{id}")
+    @GetMapping("/wiseSayings/{id}/delete")
     @ResponseBody
     public String delete(@PathVariable int id) {
         WiseSaying wiseSaying = findById(id)
@@ -73,7 +73,7 @@ public class WiseSayingController {
                 .findFirst();
     }
 
-    @GetMapping("/wiseSayings/modify/{id}")
+    @GetMapping("/wiseSayings/{id}/modify")
     @ResponseBody
     public String modify(@PathVariable int id,
                          @RequestParam(defaultValue = "내용") String content,
